@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 220 40% 5%;
+    --foreground: 180 100% 95%;
+
+    --card: 220 35% 8%;
+    --card-foreground: 180 100% 95%;
+
+    --popover: 220 35% 8%;
+    --popover-foreground: 180 100% 95%;
+
+    --primary: 195 100% 50%;
+    --primary-foreground: 220 40% 5%;
+
+    --secondary: 220 30% 15%;
+    --secondary-foreground: 180 100% 95%;
+
+    --muted: 220 25% 20%;
+    --muted-foreground: 180 20% 65%;
+
+    --accent: 180 100% 50%;
+    --accent-foreground: 220 40% 5%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 30% 18%;
+    --input: 220 30% 18%;
+    --ring: 195 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Gradient colors */
+    --gradient-start: 220 80% 15%;
+    --gradient-mid: 200 90% 35%;
+    --gradient-end: 180 100% 50%;
+    
+    /* Neon glow */
+    --neon-cyan: 180 100% 50%;
+    --neon-blue: 210 100% 60%;
+    
+    /* Metallic silver */
+    --silver: 0 0% 75%;
+    --silver-dark: 0 0% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-[hsl(var(--gradient-start))] via-[hsl(var(--gradient-mid))] to-[hsl(var(--gradient-end))] bg-clip-text text-transparent;
+  }
+
+  .text-neon {
+    @apply text-[hsl(var(--neon-cyan))];
+    text-shadow: 0 0 10px hsl(var(--neon-cyan) / 0.5), 0 0 20px hsl(var(--neon-cyan) / 0.3);
+  }
+
+  .glow-neon {
+    box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.4), 0 0 40px hsl(var(--neon-blue) / 0.2);
+  }
+
+  .glow-neon-hover {
+    transition: all 0.3s ease;
+  }
+
+  .glow-neon-hover:hover {
+    box-shadow: 0 0 30px hsl(var(--neon-cyan) / 0.6), 0 0 60px hsl(var(--neon-blue) / 0.4);
+    transform: translateY(-2px);
+  }
+
+  .bg-gradient-radial {
+    background: radial-gradient(circle at center, hsl(var(--gradient-mid) / 0.2), transparent 70%);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
